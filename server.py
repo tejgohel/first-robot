@@ -9,8 +9,8 @@ app = Flask(__name__)
 # ================= ENV VARIABLES =================
 API_KEY = os.environ.get("DELTA_API_KEY")
 API_SECRET = os.environ.get("DELTA_API_SECRET")
-PRODUCT_ID = int(os.environ.get("PRODUCT_ID", 1699))
-ORDER_SIZE = int(os.environ.get("ORDER_SIZE", 10))
+PRODUCT_ID = int(os.environ.get("PRODUCT_ID") or 1699)
+ORDER_SIZE = int(os.environ.get("ORDER_SIZE") or 10)
 
 # ================= DELTA CLIENT =================
 delta_client = DeltaRestClient(
@@ -83,4 +83,5 @@ def home():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
+
     app.run(host="0.0.0.0", port=port)
